@@ -94,22 +94,288 @@ h4, p, q, small, nav, button, form {
     font-family: var(--body);
 }
 
+h1 {
+    font-size: 2.25rem;
+    padding: 1.5rem 0 0.5rem 1.5rem;
+}
+
+h2 {
+    font-size: 1.75em;
+    padding-top: 2rem;
+}
+
+p {
+    line-height: 1.75rem;
+    padding: 1rem 0;
+}
+
+header p {
+    font-size: 1.15rem;
+    width: 90%;
+    padding-top: 0;
+}
+
+h3{
+    font-size: 1.5rem;
+    padding-left: 0;
+}
+
+h4 {
+
+}
+
+
 /* 3. Structure Styles
 ======================================== */
+#intro h2, #intro p, h1, header p {
+    padding-left: 1.5rem;
+}
 
+header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+h1 {
+    grid-column: 1 / -1;
+    grid-row: 2 / 3;
+}
+
+header p {
+    grid-column: 1 / -1;
+    grid-row: 3 / 4;
+}
+
+#intro {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 20px;
+}
+
+#img-grid {
+    display: grid;
+    grid-template-columns: 1fr;  /* One column for mobile */
+    grid-gap: 20px;
+}
+
+#img-grid img {
+    width: 100%;
+}
+
+#plan {
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: var(--yellow);
+}
+
+#plan img {
+    width: 95%;
+}
+
+#plan section {
+    background-color: var(--teal);
+    border: 3px solid var(--white);
+    border-radius: 8px;
+    padding: 35px;
+    margin: 10px auto;
+}
 
 /* 4. Modules Styles
 ======================================== */
 /* Site Navigation */
+#menu-toggle {
+    position: relative;
+    top: 1rem;
+    width: 100%;
+    text-align: center;
+}
+
+#toggle {
+    display: none;
+}
+
+#toggle + label {
+    display: block;
+    cursor: pointer;
+    background-color: var(--yellow);
+    color: var(--black);
+    padding: 1rem;
+    text-align: center;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+#toggle:checked + label {
+    background-color: var(--black);
+    color: var(--white);
+}
+
+#menu-toggle ul {
+    display: none;
+    background-color: var(--blue);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#toggle:checked ~ ul {
+    display: block;
+    padding: 1rem;
+    text-align: center;
+}
+
+#menu-toggle li a {
+    display: block;
+    padding: 10px;
+    color: black;
+    text-decoration: none;
+    text-transform: capitalize;
+    font-weight: bold;
+}
+
+#menu-toggle li a:hover,
+#menu-toggle li.active a {
+    background-color: var(--yellow);
+}
+
+.sr-only {
+    display: none;
+}
+
 /* Site Footer */
 
 /* 5. Component Styles
 ======================================== */
+#skip {
+	position: absolute;
+	left: -10000px;
+	top: auto;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+}
 
+#skip: focus {
+	position: static;
+	width: auto;
+	height: auto;
+}
+
+#logo img {
+    width: 150px;
+    padding-top: 0.5rem;
+}
 
 /* 6. Page Styles
 ======================================== */
-
+header {
+    background-image: linear-gradient(var(--teal), var(--teal), var(--white))
+}
 
 /* 7. Media Queries
 ======================================== */
+/* Navigation */
+@media (min-width: 768px) {
+    header {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+        grid-gap: 10px; /* Adjust based on spacing preferences */
+        align-items: center; /* Align items in the center for a cleaner look */
+    }
+
+    #logo {
+        grid-row: 1; /* Logo on the first row */
+    }
+
+    h1, header p {
+        text-align: center; /* Center-align the text */
+        grid-row: 2; /* Place the h1 and paragraph in the second row */
+    }
+
+    #menu-toggle {
+        grid-row: 3; /* Navigation menu on the third row */
+        display: block; /* Ensure it is displayed */
+    }
+
+    #toggle + label {
+        display: none; /* Hide the toggle label as the full nav should be visible */
+    }
+
+    #menu-toggle ul {
+        display: flex; /* Flex display to align navigation horizontally */
+        justify-content: center; /* Center the menu items */
+        padding: 0.5em 0; /* Padding for spacing around the menu */
+    }
+
+    #menu-toggle li {
+        padding: 0 1em; /* Horizontal padding between menu items */
+    }
+
+    #menu-toggle li a {
+        padding: 0.5em 1em; /* Padding inside each link for better touch targets */
+    }
+}
+
+
+@media (min-width: 1024px) {
+    #intro {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    #menu-toggle {
+        position: absolute;
+        right: 0; /* Position the navigation to the top-right corner */
+        top: 0;
+        width: auto;
+    }
+
+    #menu-toggle ul {
+        display: flex;
+    }
+
+    #menu-toggle li {
+        margin-right: 20px; /* Space between menu items */
+    }
+
+    #menu-toggle li a {
+        padding: 0.5rem 1rem;
+    }
+}
+
+/* Intro */
+@media (min-width: 768px) {
+    #img-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    #img-grid img:nth-child(3), #img-grid picture {
+        grid-column: span 2;
+    }
+}
+
+@media (min-width: 1024px) {
+    #intro {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        grid-template-rows: auto 1fr;
+        align-items: start;
+    }
+    #intro h2 {
+        grid-row: 1;
+        grid-column: 1 / span 2;
+    }
+    #intro p {
+        grid-row: 2;
+        grid-column: 1;
+    }
+    #img-grid {
+        grid-row: 1 / span 2;
+        grid-column: 2;
+    }
+    #img-grid img, #img-grid picture {
+        width: 100%;
+        height: auto;
+    }
+}
