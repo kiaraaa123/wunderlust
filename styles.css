@@ -84,6 +84,12 @@ table {
     --body: Montserrat;
 }
 
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
 /* 2. Typography Styles
 ======================================== */
 h1, h2, h3 {
@@ -95,33 +101,40 @@ h4, p, q, small, nav, button, form {
 }
 
 h1 {
-    font-size: 2.25rem;
+    font-size: 3rem;
     padding: 1.5rem 0 0.5rem 1.5rem;
 }
 
 h2 {
-    font-size: 1.75em;
+    font-size: 2.5em;
     padding-top: 2rem;
 }
 
-p {
+p, q {
     line-height: 1.75rem;
-    padding: 1rem 0;
+    font-size: 1.25rem;
 }
 
 header p {
-    font-size: 1.15rem;
+    font-size: 1.5rem;
     width: 90%;
     padding-top: 0;
 }
 
 h3{
-    font-size: 1.5rem;
+    font-size: 2.25rem;
     padding-left: 0;
 }
 
 h4 {
+    font-size: 2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+}
 
+#intro p {
+    padding-bottom: 1rem;
 }
 
 
@@ -154,7 +167,7 @@ header p {
 
 #img-grid {
     display: grid;
-    grid-template-columns: 1fr;  /* One column for mobile */
+    grid-template-columns: 1fr;
     grid-gap: 20px;
 }
 
@@ -162,14 +175,20 @@ header p {
     width: 100%;
 }
 
-#plan {
-    margin: 2rem auto;
+#plan, #testimonials {
+    margin: 0 auto;
     padding: 2rem;
+}
+
+#plan {
     background-color: var(--yellow);
 }
 
 #plan img {
-    width: 95%;
+    display: block;
+    width: 10rem;
+    height: 10rem;
+    margin: 0 auto;
 }
 
 #plan section {
@@ -178,6 +197,117 @@ header p {
     border-radius: 8px;
     padding: 35px;
     margin: 10px auto;
+}
+
+#plan h4 {
+    padding-bottom: 2rem;
+}
+
+#testimonials img {
+    display: block;
+    width: 200px;
+    margin: 0 auto;
+    padding: 1rem 0;
+}
+
+#testimonials p, #testimonials q {
+    text-align: center;
+}
+
+#testimonials q {
+    display: block;
+    text-align: center;
+    font-style: italic;
+    font-size: larger;
+}
+
+q::before {
+    content: '"';
+}
+
+q::after {
+    content: '"';
+}
+
+#about {
+    padding: 2rem;
+    background-color: var(--blue);
+}
+
+#about div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    text-align: center;
+}
+
+#about img {
+    width: 10rem;
+    height: 8rem;
+    padding-top: 2rem;
+}
+
+#about h4 {
+    font-size: 1.5rem;
+    line-height: 2rem;
+}
+
+#contact {
+    padding-top: 2rem;
+    padding-left: 2rem;
+}
+
+.form-required {
+    font-size: 1.15rem;
+    font-family: var(--body);
+    font-style: italic;
+}
+
+#contact input, select {
+    display: block;
+    margin: 0 auto;
+    width: 65%;
+    height: 3rem;
+    border: 3px solid var(--purple);
+    margin-bottom: 2rem;
+}
+
+form label, form legend {
+    text-align: left;
+    margin-left: 4rem;
+    font-family: var(--body);
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+::placeholder, #destination, #travelTime {
+    font-family: var(--body);
+    font-size: 1.15rem;
+    color: var(--dark-gray);
+    padding-left: 0.75rem;
+}
+
+.required {
+    color: var(--purple);
+    font-weight: 500;
+    padding: 0.25rem
+}
+
+fieldset {
+}
+
+.radio-label {
+    text-transform: capitalize;
+    font-weight: 500;
+    display: inline;
+}
+
+#mySubmit {
+    background-color: var(--purple);
+    color: var(--white);
+    font-family: var(--body);
+    text-transform: uppercase;
+    font-size: 1.25rem;
 }
 
 /* 4. Modules Styles
@@ -202,7 +332,7 @@ header p {
     padding: 1rem;
     text-align: center;
     font-weight: bold;
-    text-transform: capitalize;
+    text-transform: uppercase;
 }
 
 #toggle:checked + label {
@@ -229,7 +359,7 @@ header p {
     padding: 10px;
     color: black;
     text-decoration: none;
-    text-transform: capitalize;
+    text-transform: uppercase;
     font-weight: bold;
 }
 
@@ -239,10 +369,30 @@ header p {
 }
 
 .sr-only {
-    display: none;
-}
+    position:absolute;
+    left:-10000px;
+    top:auto;
+    width:1px;
+    height:1px;
+    overflow:hidden;
+    }
 
 /* Site Footer */
+footer {
+    background-color: var(--light-gray);
+    padding: 2rem 0;
+    text-align: center;
+    font-family: var(--body);
+    color: var(--dark-gray);
+    display: grid;
+    gap: 2rem;
+    font-size: 1.15rem;
+}
+
+footer a {
+    text-decoration: none;
+    color: var(--dark-gray);
+}
 
 /* 5. Component Styles
 ======================================== */
@@ -278,104 +428,252 @@ header {
 @media (min-width: 768px) {
     header {
         display: grid;
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 3fr;
         grid-template-rows: auto auto auto;
-        grid-gap: 10px; /* Adjust based on spacing preferences */
-        align-items: center; /* Align items in the center for a cleaner look */
+        grid-gap: 10px;
+        align-items: center;
     }
 
     #logo {
-        grid-row: 1; /* Logo on the first row */
+        grid-row: 1 / 3;
+    }
+
+    #logo img {
+        width: 100%;
     }
 
     h1, header p {
-        text-align: center; /* Center-align the text */
-        grid-row: 2; /* Place the h1 and paragraph in the second row */
+        text-align: left; 
     }
 
-    #menu-toggle {
-        grid-row: 3; /* Navigation menu on the third row */
-        display: block; /* Ensure it is displayed */
+    h1 {
+        grid-column: 2 / 3;
+        grid-row: 1 / 2;
+    }
+
+    header p {
+        grid-row: 2 / 3;
+        grid-column: 2 / 3;
+    }
+
+    nav {
+        display: block;
+        position: static;
+        grid-column: 1 / -1;
     }
 
     #toggle + label {
-        display: none; /* Hide the toggle label as the full nav should be visible */
+        display: none;
     }
 
     #menu-toggle ul {
-        display: flex; /* Flex display to align navigation horizontally */
-        justify-content: center; /* Center the menu items */
-        padding: 0.5em 0; /* Padding for spacing around the menu */
+        display: flex;
+        justify-content: center;
+        padding: 0.5em 0;
+        background-color: rgba(255, 255, 255, 0);
     }
 
     #menu-toggle li {
-        padding: 0 1em; /* Horizontal padding between menu items */
+        padding: 0 1em;
     }
 
     #menu-toggle li a {
-        padding: 0.5em 1em; /* Padding inside each link for better touch targets */
+        width: 10rem;;
+        background-color: var(--white);
+    }
+
+    #img-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    #img-grid img:nth-child(3), #img-grid picture {
+        grid-column: span 2;
+    }
+
+    #plan div {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.25rem;
+    }
+
+    #plan a {
+        width: 40%;
+    }
+
+    #testimonials div {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+    }
+
+    #about div {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    #contact input, select {
+        width: 99%;
+        height: 4rem;
+    }
+
+    form label, form legend {
+        margin-left: 0.25rem;
+    }
+
+    #contact h3 {
+        padding-bottom: 1.5rem;
+    }
+
+    fieldset {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        padding-bottom: 2rem;
+    }
+
+    input#mySubmit {
+        width: 40%;
+        display: block;
+        justify-self: right;
+    }
+
+    footer {
+        display: grid;
+        grid-template-columns: 1.5fr 1fr 1fr;
+        font-size: 1rem;
+        justify-content: center;
+        align-content: center;
+        line-height: 0;
+    }
+
+    footer p {
+        font-size: 1rem;
+        padding: 0;
+        margin: 0;
+        line-height: 0;
     }
 }
 
 
 @media (min-width: 1024px) {
-    #intro {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+    h1 {
+        font-size: 2.5rem;
+        position: absolute;
+        left: 15%;
     }
 
-    #menu-toggle {
+    h2 {
+        font-size: 2rem;
+    }
+
+    h3 {
+        font-size: 1.75rem;
+    }
+
+    h4 {
+        font-size: 1.5rem;
+    }
+
+    p, q {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    header p {
         position: absolute;
-        right: 0; /* Position the navigation to the top-right corner */
+        left: 15%;
+        top: 11%;
+        font-size: 0.95rem;
+    }
+
+    header {
+        padding-bottom: 4rem;
+    }
+
+    nav {
+        position: absolute;
+        right: 0;
         top: 0;
         width: auto;
     }
 
+    #logo img {
+        width: 75%;
+    }
+
     #menu-toggle ul {
         display: flex;
+        font-size: 0.75rem;
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
     }
 
     #menu-toggle li {
-        margin-right: 20px; /* Space between menu items */
+        margin: 0;
+        padding: 0;
+        margin-left: 0.5rem;
     }
 
     #menu-toggle li a {
-        padding: 0.5rem 1rem;
+        width: 8rem;
+        margin: 0;
     }
-}
-
-/* Intro */
-@media (min-width: 768px) {
-    #img-grid {
-        grid-template-columns: 1fr 1fr;
-    }
-    #img-grid img:nth-child(3), #img-grid picture {
-        grid-column: span 2;
-    }
-}
-
-@media (min-width: 1024px) {
+    
     #intro {
         display: grid;
         grid-template-columns: 1fr 2fr;
         grid-template-rows: auto 1fr;
         align-items: start;
     }
+
     #intro h2 {
         grid-row: 1;
         grid-column: 1 / span 2;
     }
+
     #intro p {
         grid-row: 2;
         grid-column: 1;
     }
+
     #img-grid {
         grid-row: 1 / span 2;
         grid-column: 2;
+        padding-bottom: 5rem;
+        width: 90%;
     }
+
     #img-grid img, #img-grid picture {
         width: 100%;
         height: auto;
+    }
+
+    #plan div {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    #testimonials div {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    form {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    #mySubmit {
+        justify-self: right;
+    }
+
+    footer {
+        display: grid;
+        grid-template-columns: 3fr 1.5fr 1.5fr;
+    }
+
+    footer p {
+        justify-self: left;
+        padding-left: 2rem;
     }
 }
